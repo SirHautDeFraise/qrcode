@@ -16,7 +16,14 @@ $html2pdf->writeHTML('
     </page_header>
 
 <h1 style="text-align:center;">QR CODE DE TEST</h1>
+<div style="text-align:center; margin-bottom:100px;">
+<h3>Avec une API de QR en IMG</h3>
 <img src="https://api.qrserver.com/v1/create-qr-code/?data=' . $link . '&size=100x100">
+</div>
+<div style="text-align:center;">
+<h3>Avec HTML2PDF (et la balise QRCODE)</h3>
+<qrcode value="' . $link . '" ec="H" style="width: 30mm;"></qrcode>
+</div>
 
     <page_footer style="text-align:center;"> 
         Ceci est un PDF de test générer par la magie.
