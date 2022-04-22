@@ -4,6 +4,29 @@ require __DIR__ . '/vendor/autoload.php';
 use Spipu\Html2Pdf\Html2Pdf;
 
 
+function getIncludeContents($filename, $vars = array())
+{
+    if (is_file($filename)) {
+        ob_start();
+        extract($vars);
+        if (is_string($filename)) {
+            include($filename);
+        } elseif (is_array($filename)) {
+            foreach ($filename as $v) {
+                include_once($v);
+            }
+        }
+
+        $contents = ob_get_contents();
+        ob_end_clean();
+
+        return $contents;
+    }
+
+    return false;
+}
+
+
 $link = $_POST['linkpdf'];
 // d($link);
 
